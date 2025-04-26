@@ -35,6 +35,7 @@ module.exports = function(app, passport, db) {
             res.redirect('/profile')
           })
         })
+        
     
         // app.put('/contactItems', (req, res) => {
         //   db.collection('Users')

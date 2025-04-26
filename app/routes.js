@@ -37,35 +37,23 @@ module.exports = function(app, passport, db) {
         })
         
     
-        // app.put('/contactItems', (req, res) => {
-        //   db.collection('Users')
-        //   .findOneAndUpdate({name: req.body.name, location: req.body.location, number: req.body.cellphone}, {
-        //     $set: {
-        //       thumbUp:req.body.thumbUp + 1
-        //     }
-        //   }, {
-        //     sort: {_id: -1},
-        //     upsert: true
-        //   }, (err, result) => {
-        //     if (err) return res.send(err)
-        //     res.send(result)
-        //   })
-        // })
+        app.put('/editContactItem', (req, res) => {
+          db.collection('Users')
+          .findOneAndUpdate({name: req.body.name, location: req.body.location, cellphone: req.body.cellphone}, {
+            $set: {
+              name: req.body.name,
+              location: req.body.location,
+              cellphone: req.body.cellphone
+            }
+          }, {
+            sort: {_id: -1},
+            upsert: true
+          }, (err, result) => {
+            if (err) return res.send(err)
+            res.send(result)
+          })
+        })
     
-        // app.put('/down', (req, res) => {
-        //   db.collection('messages')
-        //   .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
-        //     $set: {
-        //       thumbUp:req.body.thumbUp - 1
-        //     }
-        //   }, {
-        //     sort: {_id: -1},
-        //     upsert: true
-        //   }, (err, result) => {
-        //     if (err) return res.send(err)
-        //     res.send(result)
-        //   })
-        // })
     
         app.delete('/contactItem', (req, res) => {
           db.collection('Users').findOneAndDelete({name: req.body.name, location: req.body.location, cellphone: req.body.cellphone}, (err, result) => {

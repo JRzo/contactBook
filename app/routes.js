@@ -29,21 +29,20 @@ module.exports = function(app, passport, db) {
     // message board routes ===============================================================
     
         app.post('/contactItem', (req, res) => {
-          db.collection('Users').insertOne({name: req.body.name, location: req.body.location, cellphone: req.body.cellphone}, (err, result) => {
+          db.collection('Users').insertOne({name: req.body.name, location: req.body.location, cellphone: req.body.cellphone,  up: 0}, (err, result) => {
             if (err) return console.log(err)
             console.log('saved to database')
             res.redirect('/profile')
           })
         })
         
+   
     
-        app.put('/editContactItem', (req, res) => {
+        app.put('/upRank', (req, res) => {
           db.collection('Users')
-          .findOneAndUpdate({name: req.body.name, location: req.body.location, cellphone: req.body.cellphone}, {
+          .findOneAndUpdate({name: req.body.name, msg: req.body.msg}, {
             $set: {
-              name: req.body.name,
-              location: req.body.location,
-              cellphone: req.body.cellphone
+              up:req.body.up + 1
             }
           }, {
             sort: {_id: -1},
@@ -53,7 +52,6 @@ module.exports = function(app, passport, db) {
             res.send(result)
           })
         })
-    
     
         app.delete('/contactItem', (req, res) => {
           db.collection('Users').findOneAndDelete({name: req.body.name, location: req.body.location, cellphone: req.body.cellphone}, (err, result) => {

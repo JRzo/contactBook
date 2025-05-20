@@ -12,7 +12,7 @@ A basic full-stack web application that allows users to create and manage their 
 * **Delete Contact:** Users have the ability to remove contacts from their personal list.
 * **Personal Contact List:** Each user's contact list is private and accessible only after logging into their account.
 
-## Technology Stack (Example - You'll need to choose your own)
+## Technology Stack
 
 This is a potential technology stack you might use to build this application:
 
